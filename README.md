@@ -125,6 +125,25 @@ python segment/val.py
 python segment/val.py --m_nms ...<other param>
 ```
 
+### Predict CLI
+
+```
+python segment/predict.py --weights /path/to/weights.pt --source /path/to/test_image/ < --instance > < --m_nms >
+```
+Optional parameters：
+- `instance` is used to display the result as the instance segmentation result on the image, and try to assign different mask colors to adjacent instances as much as possible
+
+- `m_nms` is used for post-processing with mask_nms
+
+If you want to obtain masked images with higher resolution, you can add the '--retina-masks' parameter. However, in cases with a large number of instances, it will require more computing resources.
+
+> Here, a demonstration weight is provided in [best.pt](https://github.com/justliulong/OGHFYOLO/releases/download/v1.0.2/best.pt). You can download the weights and place them in the `./sample_pt/` directory of the project, and run it directly with the following command for prediction:
+
+```
+python segment/predict.py --weights sample_pt/best.pt --source ./sample_pt/test_image/ --instance --m_nms
+```
+The results will be stored by default in the './runs/predict-seg/exp 'folder
+
 ## License
 OG-HFYOLO is released under the GNU Affero General Public License v3.0 (AGPL-3.0). Please see the [LICENSE](./LICENSE) file for more information.
 
